@@ -1,36 +1,21 @@
 import React, { useState } from 'react'
 
-export default function App() {
+function App() {
 
-    const [log, setlog] = useState(false)
-
-    const logOn = () => {
-      return 'Login com sucesso'
-    }
-    const logOff = () => {
-      return 'Login com Erro'
-    }
-
-    const comprimento = () => {
-      const hora = 18
-      if(hora >= 0 && hora < 12) {
-        return <p>Bom dia</p>
-      } else if (hora >= 12 && hora < 18) {
-        return <p>Bom tarde</p>
-      } else {
-        return <p>Bom noite</p>
-      }
-
-    }
+    const [nome,setNome] = useState()
 
     return (
       <>
-        <h1>CBF Cursos</h1>
-        {comprimento()}
-        <p>{log?logOn():logOff()}</p>
-        <button onClick={() => setlog(!log)}>
-          {log?'On':'Off'}
-        </button>
+        <label>Seu nome:</label>
+        <input 
+          type="text" 
+          name="nome"
+          value={nome} 
+          onChange={(e)=> setNome(e.target.value)}
+        />
+        <p>Nome digitado: {nome}</p>
       </>
     )
 }
+
+export default App
