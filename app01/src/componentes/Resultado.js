@@ -1,13 +1,13 @@
-import React from "react"
+import React from "react";
 
-function Resultado(props) {
+export default function Resultado(props) {
 
-    return (
-        <div>
-            <legend>Informe a nota</legend>
-            <input type="text" value="" onChange=""></input>
-        </div>
-    )
+  return (
+
+    <div>
+        <p>Soma das notas: {props.SomaNotas}</p>
+        <p>{props.SomaNotas >= 30 ? "Aprovado" : "Reprovado"}</p>
+    </div>
+
+  )
 }
-
-export default Resultado
