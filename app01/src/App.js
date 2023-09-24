@@ -4,26 +4,26 @@ export default function App() {
 
   const [nome,setNome] = useState()
 
-  const adicionar = () => {
-    localStorage.setItem("nome", "Bruno")
+  const adicionar = (chave,valor) => {
+    localStorage.setItem(chave, valor)
   }
 
-  const VerNome = () => {
-    localStorage.getItem("nome")
-    alert()
+  const VerNome = (chave) => {
+    alert(localStorage.getItem(chave))
   }
 
-  const remover = () => {
-    localStorage.removeItem("nome")
+  const remover = (chave) => {
+    localStorage.removeItem(chave)
   }
 
   return (
 
     <>
-      <input type="text" ></input>
-      <button onClick={adicionar}>adicionar</button>
-      <button onClick={VerNome}>VerNome</button>
-      <button onClick={remover}>remover</button>
+      <label>Digite um nome</label><br />
+      <input type="text" value={nome} onChange={(e) => setNome(e.target.value)}></input>
+      <button onClick={() => adicionar("is_nome", nome)}>adicionar</button>
+      <button onClick={() => VerNome("is_nome")}>Ver Nome</button>
+      <button onClick={() => remover("is_nome")}>remover Nome</button>
     </>
 
   )
