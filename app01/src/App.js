@@ -1,30 +1,43 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Pg1 from './componentes/Pagina1'
-import Pg2 from './componentes/Pagina2'
-import Pg3 from './componentes/Pagina3'
+import React, { useState } from "react";
 
-export default function App(){
-    return(
+export default function App() {
+  const [form, setform] = useState({ nome: "", curso: "", ano: "" });
+  const HandlonChangeValue = (e) => {
+    if (e.target.getAttribute("name") == "fnome") {
+      setform({ nome: e.target.value, curso: form.curso, ano: form.ano });
+    } else if (e.target.getAttribute("name") == "fcurso") {
+      setform({ nome: form.nome, curso: e.target.value, ano: form.ano });
+    } else {
+      setform({ nome: form.nome, curso: form.curso, ano: e.target.value });
+    }
+  };
+
+  return (
     <>
-      <Router> 
-        <header>
-          <nav>
-            <Link to="/" > Home </Link>
-            <Link to="/pag1">Página 1</Link>
-            <Link to="/pag2">Página 2</Link>
-            <Link to="/pag3">Página 3</Link> 
-          </nav>
-        </header>
-        <main>
-          
-          <Routes>
-            <Route exact path="/pag1" element={<Pg1/>}/>
-            <Route exact path="/pag2" element={<Pg2/>}/>
-            <Route exact path="/pag3" element={<Pg3/>}/>
-          </Routes>          
-        </main>
-      </Router>
+      <label>Digite seu nome</label>
+      <input
+        type="text"
+        name="fnome"
+        value={form.nome}
+        onChange={(e) => HandlonChangeValue(e)}
+      ></input>
+      <label>Digite seu curso</label>
+      <input
+        type="text"
+        name="fcurso"
+        value={form.curso}
+        onChange={(e) => HandlonChangeValue(e)}
+      ></input>
+      <label>Digite seu ano</label>
+      <input
+        type="text"
+        name="fano"
+        value={form.ano}
+        onChange={(e) => HandlonChangeValue(e)}
+      ></input>
+      <p>Ano digitado: {form.ano}</p>
+      <p>Nome digitado: {form.nome}</p>
+      <p>Curso digitado: {form.curso}</p>
     </>
-    )
+  );
 }
